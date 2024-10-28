@@ -1,7 +1,7 @@
 ## Power Platform Desktop Devops
 # Desktop Init Scripts
 
-The repo contains a [powershell script](blob/main/desktop-init.ps1) and subscripts which can be used to prepare a desktop environment for Power Platform Desktop Devops.
+The repo contains a [powershell script](desktop-init.ps1) and subscripts which can be used to prepare a desktop environment for Power Platform Desktop Devops.
 
 ## Easy Start
 Use the following command to run the script as is.
