@@ -1,6 +1,12 @@
 
 Write-Output "Running ado-desktop-init.ps1"
 
+function refresh-env-path {
+    $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") +
+                ";" +
+                [System.Environment]::GetEnvironmentVariable("Path","User")
+}
+
 #  Install winget for Windows
 
 $progressPreference = 'silentlyContinue'
@@ -11,6 +17,7 @@ Invoke-WebRequest -Uri https://github.com/microsoft/microsoft-ui-xaml/releases/d
 Add-AppxPackage Microsoft.VCLibs.x64.14.00.Desktop.appx
 Add-AppxPackage Microsoft.UI.Xaml.2.8.x64.appx
 Add-AppxPackage Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle
+refresh-env-path
 
 # Core Installs
 
@@ -20,6 +27,7 @@ Add-AppxPackage Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle
 Write-Output "Running git-install.ps1"
 
 winget install --id Git.Git -e  --accept-package-agreements --accept-source-agreements
+refresh-env-path
 
 # Install Dotnet
 Write-Output "Running dotnet-install.ps1"
@@ -41,6 +49,9 @@ Write-Output "Installing dotnet using Powershell Script"
 
 }
 
+
+
+refresh-env-path
 
 # Install .Net Framework
 
@@ -80,6 +91,7 @@ function DownloadAndInstallFW ([string] $downloadUrl, [string] $downloadPath, [s
 DownloadAndInstallFW -downloadUrl $dnfw472DownloadUrl -downloadPath $dnfw472DownloadPath -fwVersion ".Net Framework 4.7.2"
 DownloadAndInstallFW -downloadUrl $dnfw481DownloadUrl -downloadPath $dnfw481DownloadPath -fwVersion ".Net Framework 4.8.1"
 
+refresh-env-path
 
 # Install AZDevops Nuget Credential Provider
 
@@ -101,12 +113,14 @@ Write-Output "Installing NetFX48 Credential Provider"
 iex "& { $(irm https://aka.ms/install-artifacts-credprovider.ps1) } -AddNetFx48 "
 
 
+refresh-env-path
 
 # Install VSCode
 
 Write-Output "Running vscode-install.ps1"
 
 winget install -e --id Microsoft.VisualStudioCode  --accept-package-agreements --accept-source-agreements
+refresh-env-path
 
 # Install Power Platform Command Line
 Write-Output "powerplatfrom-cli-install.ps1"
@@ -145,6 +159,7 @@ DownloadAndInstallPPCLI -downloadUrl $ppcliDownloadUrl -downloadPath $ppcliDownl
 Write-Output "dotnet tool install --global Microsoft.PowerApps.CLI.Tool"
 dotnet tool install --global Microsoft.PowerApps.CLI.Tool
 
+refresh-env-path
 
 # Install Openstrata
 
@@ -157,6 +172,7 @@ dotnet new install OpenStrata.NET.Templates
 dotnet new install OpenStrata.Devops.VSCode.New
 
 
+refresh-env-path
 
 # Install NPM
 Write-Output "Running npm-install.ps1"
@@ -164,6 +180,7 @@ Write-Output "Running npm-install.ps1"
 
 #winget install -e --id OpenJS.NodeJS  --accept-package-agreements --accept-source-agreements
 winget install -e --id OpenJS.NodeJS.LTS  --accept-package-agreements --accept-source-agreements
+refresh-env-path
 
 # Recommend a short file path for storing repos.
 
