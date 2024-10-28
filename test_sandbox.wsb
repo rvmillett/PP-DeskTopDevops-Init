@@ -1,0 +1,12 @@
+<Configuration>
+  <MappedFolders>
+    <MappedFolder>
+      <HostFolder>C:\repos\DeskTopDevops</HostFolder>
+      <SandboxFolder>C:\DeskTopDevops</SandboxFolder>
+      <ReadOnly>true</ReadOnly>
+    </MappedFolder>
+  </MappedFolders>
+  <LogonCommand>
+    <Command>powershell.exe -ExecutionPolicy Bypass -File C:\DeskTopDevops\init-desktop.ps1</Command>
+  </LogonCommand>
+</Configuration>
